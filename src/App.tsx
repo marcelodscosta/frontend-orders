@@ -1,5 +1,5 @@
-import SignIn from "./components/SignIn";
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { AppRoutes } from './AppRoutes';
 
 
 const theme = createTheme();
@@ -9,7 +9,8 @@ export const App = () => {
   return (
     <ThemeProvider theme={theme}>
 
-      <SignIn />
+      <AppRoutes />
+
 
     </ThemeProvider>
   )
