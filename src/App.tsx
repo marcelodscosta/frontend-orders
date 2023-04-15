@@ -1,5 +1,6 @@
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { AppRoutes } from './AppRoutes';
+import { AppRoutes } from './AppRoute';
+
 
 
 const theme = createTheme();
@@ -10,7 +11,6 @@ export const App = () => {
     <ThemeProvider theme={theme}>
 
       <AppRoutes />
-
 
     </ThemeProvider>
   )

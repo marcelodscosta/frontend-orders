@@ -11,19 +11,30 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import LoadingButton from '@mui/lab/LoadingButton';
-import { Copyright } from '../Copyright';
-
+import { Copyright } from '../../components/Copyright';
+import { AuthContext } from '../../contexts/Authentication/AuthContext';
+import { loginRequest } from '../../contexts/Authentication/utils';
 
 
 export default function SignIn() {
 
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    const {
+        email,
+        password,
+        userData
+    } = React.useContext(AuthContext);
+
+    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
-        console.log({
-            email: data.get('email'),
-            password: data.get('password'),
-        });
+
+        if (data !== null) {
+            const emailForm = String(data.get('email'));
+            const passwordForm = String(data.get('password'));
+            const token = await loginRequest({ email: emailForm, password: passwordForm });
+            console.log(token);
+        };
+
     };
 
     return (
@@ -90,6 +101,5 @@ export default function SignIn() {
             </Box>
             <Copyright sx={{ mt: 8, mb: 4 }} />
         </Container>
-
     );
 }
