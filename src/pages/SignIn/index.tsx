@@ -12,30 +12,10 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import LoadingButton from '@mui/lab/LoadingButton';
 import { Copyright } from '../../components/Copyright';
-import { AuthContext } from '../../contexts/Authentication/AuthContext';
-import { loginRequest } from '../../contexts/Authentication/utils';
 
 
 export default function SignIn() {
 
-    const {
-        email,
-        password,
-        userData
-    } = React.useContext(AuthContext);
-
-    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
-        const data = new FormData(event.currentTarget);
-
-        if (data !== null) {
-            const emailForm = String(data.get('email'));
-            const passwordForm = String(data.get('password'));
-            const token = await loginRequest({ email: emailForm, password: passwordForm });
-            console.log(token);
-        };
-
-    };
 
     return (
 
@@ -55,7 +35,7 @@ export default function SignIn() {
                 <Typography component="h1" variant="h5">
                     Login
                 </Typography>
-                <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+                <Box component="form" noValidate sx={{ mt: 1 }}>
                     <TextField
                         margin="normal"
                         required
